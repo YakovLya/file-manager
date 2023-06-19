@@ -19,6 +19,7 @@ const getUsername = () => {
 const username = getUsername()
 
 console.log(`Welcome to the File Manager, ${username}!`)
+
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -33,10 +34,10 @@ rl.on('exit', exitHandler)
 rl.on('SIGINT', exitHandler)
 
 console.log(`You are currently in ${global.work_path}`)
-rl.on('line', (line) => {
+rl.on('line', async (line) => {
     if (line == '.exit')
         exitHandler()
     else
-        inputHandler(line)
+        await inputHandler(line)
     console.log(`You are currently in ${global.work_path}`)
 })

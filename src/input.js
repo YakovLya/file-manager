@@ -12,7 +12,7 @@ const inputHandler = async (line) => {
             osInfo(args).catch(errorHandler)
             break
         case 'hash':
-            calcHash(args).catch(errorHandler)
+            await calcHash(args).catch(errorHandler)
             break
         case 'up':
             global.work_path = join(global.work_path, '../')
