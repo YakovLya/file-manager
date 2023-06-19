@@ -1,5 +1,12 @@
 import * as readline from 'node:readline/promises';
 import { inputHandler } from './input.js';
+import { homedir } from 'os'
+
+const global = {
+    work_path: homedir(),
+}
+
+export { global }
 
 const getUsername = () => {
     let username = "null_name" // in case of noname testing :)
@@ -25,9 +32,11 @@ const exitHandler = () => {
 rl.on('exit', exitHandler)
 rl.on('SIGINT', exitHandler)
 
+console.log(`You are currently in ${global.work_path}`)
 rl.on('line', (line) => {
     if (line == '.exit')
         exitHandler()
     else
         inputHandler(line)
+    console.log(`You are currently in ${global.work_path}`)
 })
