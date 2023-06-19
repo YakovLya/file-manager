@@ -1,5 +1,5 @@
 import { join, isAbsolute } from 'path'
-import { access } from 'fs'
+import { access, readdir } from 'fs'
 import { global } from './main.js'
 
 const up = async (args) => {
@@ -21,4 +21,29 @@ const cd = async (args) => {
     })
 }
 
-export { up, cd }
+const ls = async () => {
+    const path = global.work_path
+    await new Promise((resolve, reject) => {
+        const out = []
+        readdir(path, { withFileTypes: true }, (err, files) => {
+            if (err)
+                reject(new Error('Operation failed'))
+            files.forEach((file) => {
+                out.push({
+                    name: file.name,
+                    type: file.isDirectory() ? 'directory' : 'file',
+                })
+            })
+            out.sort((a, b) => {
+                if (a.type != b.type)
+                    return (b.type == 'directory') - (a.type == 'directory')
+                else 
+                    return a.name.localeCompare(b.name)
+            })
+            console.table(out)
+            resolve()
+        })
+    })
+}
+
+export { up, cd, ls }

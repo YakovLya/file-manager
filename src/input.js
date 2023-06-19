@@ -1,7 +1,7 @@
 import { errorHandler } from "./error.js"
 import { calcHash } from "./hash.js"
 import { osInfo } from "./os.js"
-import { up, cd } from './nwd.js'
+import { up, cd, ls } from './nwd.js'
 
 const inputHandler = async (line) => {
     const cmd = line.split(' ')[0]
@@ -18,6 +18,9 @@ const inputHandler = async (line) => {
             break
         case 'cd':
             await cd(args).catch(errorHandler)
+            break
+        case 'ls':
+            await ls().catch(errorHandler)
             break
         default:
             errorHandler(new Error('Invalid input'))
