@@ -1,0 +1,19 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "Simple file manager written with Node.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YakovLya/file-manager.git"
+  },
+  "author": "YakovLya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YakovLya/file-manager/issues"
+  },
+  "homepage": "https://github.com/YakovLya/file-manager#readme"
+}
